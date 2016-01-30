@@ -53,4 +53,11 @@ router.get('/publications/:bannerCode/:storeGuid', function(req, res) {
 	});
 });
 
+router.get('/products/:id', function(req, res){
+	var serviceUrl = constants.SERVICE_URL + '/api/products/' + req.params.id
+	request(serviceUrl, function(err, response, body){
+		handleServiceResponse(res, err, response, body);
+	});
+});
+
 module.exports = router;
