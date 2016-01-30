@@ -4,7 +4,7 @@ var constants = require('../models/constants');
 var router = express.Router();
 
 
-var handleStoresRequest = function(res, error, response, body){
+var handleServiceResponse = function(res, error, response, body){
 	if(error){
 		console.log('Error making http request to service');
 		res.status(500).json({
@@ -39,7 +39,7 @@ router.get('/stores/:postalCode', function(req, res){
 		postalCode : req.params.postalCode
 	});
 	request(serviceUrl, function(err, response, body){
-		handleStoresRequest(res, err, response, body);
+		handleServiceResponse(res, err, response, body);
 	});
 });
 
@@ -50,12 +50,18 @@ router.get('/stores/:bannerCode/:postalCode', function(req, res){
 		postalCode : req.params.postalCode
 	});
 	request(serviceUrl, function(err, response, body){
-		handleStoresRequest(res, err, response, body);
+		handleServiceResponse(res, err, response, body);
 	});
 });
 
-router.get('/publications/:store', function(req, res) {
-
+router.get('/publications/:bannerCode/:storeGuid', function(req, res) {
+	var serviceUrl = constants.SERVICE_URL + '/api/publications/' + req.params.bannerCode + '/' + req.params.storeGuid;
+	console.log({
+		store: req.params.store
+	});
+	request(serviceUrl, function(err, response, body){
+		handleServiceResponse(res, err, response, body);
+	});
 });
 
 module.exports = router;
