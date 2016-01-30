@@ -57,7 +57,8 @@ router.get('/stores/:bannerCode/:postalCode', function(req, res){
 router.get('/publications/:bannerCode/:storeGuid', function(req, res) {
 	var serviceUrl = constants.SERVICE_URL + '/api/publications/' + req.params.bannerCode + '/' + req.params.storeGuid;
 	console.log({
-		store: req.params.store
+		bannerCode : req.params.bannerCode,
+		store: req.params.storeGuid
 	});
 	request(serviceUrl, function(err, response, body){
 		handleServiceResponse(res, err, response, body);
