@@ -9,7 +9,7 @@ var handleStoresRequest = function(res, error, response, body){
 		console.log('Error making http request to service');
 		res.status(500).json({
 			error: 'Internal server error, service is probably down.',
-			message: responseBody.message
+			message: body
 		});
 	}
 	else {
