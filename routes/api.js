@@ -53,8 +53,8 @@ router.get('/publications/:bannerCode/:storeGuid', function(req, res) {
 	});
 });
 
-router.get('/products/:id', function(req, res){
-	var serviceUrl = constants.SERVICE_URL + '/api/products/' + req.params.id
+router.get('/products/:publicationId/:productId', function(req, res){
+	var serviceUrl = constants.SERVICE_URL + '/api/products/' + req.params.publicationId + '/' + req.params.productId;
 	request(serviceUrl, function(err, response, body){
 		handleServiceResponse(res, err, response, body);
 	});
