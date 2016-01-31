@@ -11,7 +11,7 @@ router.post('/api/pdf', function(req, res){
 	request.post(constants.SERVICE_URL + '/api/pdf', req.body, function(err, httpResponse, body){
 		if(err){
 			res.status(500).json({
-				error: 'Internal server error, service is probably down.',
+				error: 'Internal server error from api, service is probably down.',
 				message: body
 			});
 		}

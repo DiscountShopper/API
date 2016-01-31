@@ -8,7 +8,7 @@ var EnhancedRouter = function(type){
 	this.handleServiceResponse = function(res, error, response, body){
 		if(error){
 			res.status(500).json({
-				error: 'Internal server error, service is probably down.',
+				error: 'Internal server error from api, service is probably down.',
 				message: body
 			});
 		}
