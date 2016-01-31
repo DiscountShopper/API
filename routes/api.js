@@ -77,8 +77,8 @@ var EnhancedRouter = function(type){
 		});
 	});
 
-	this.router.post('/products/recommended/', function(req, res){
-		var serviceUrl = constants.SERVICE_URL + '/api/products/recommended?type=' + that.type;
+	this.router.post('/recommended/products/:postalCode', function(req, res){
+		var serviceUrl = constants.SERVICE_URL + '/api/recommended/products/?type=' + that.type;
 		request(serviceUrl, req.body, function(err, response, body){
 			that.handleServiceResponse(res, err, response, body);
 		});
