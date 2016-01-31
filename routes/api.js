@@ -67,4 +67,11 @@ router.get('/closest/publications/:postalCode', function(req, res){
 	});
 });
 
+router.get('/closest/categories/:postalCode', function(req, res){
+	var serviceUrl = constants.SERVICE_URL + '/api/closest/categories/' + req.params.postalCode;
+	request(serviceUrl, function(err, response, body){
+		handleServiceResponse(res, err, response, body);
+	});
+});
+
 module.exports = router;
