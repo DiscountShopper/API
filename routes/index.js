@@ -1,8 +1,10 @@
 var express = require('express');
-var api = require('./api');
+
+var Api = require('./api');
 var router = express.Router();
 
-/* GET home page. */
-router.use('/api', api);
+/* ZE API */
+router.use('/api/groceries', new Api("GROCERIES").router);
+router.use('/api/drugstores', new Api("DRUGSTORES").router);
 
 module.exports = router;
