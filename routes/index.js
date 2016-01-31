@@ -18,7 +18,7 @@ router.post('/api/pdf', function(req, res){
 		else {
 			switch(httpResponse.statusCode){
 				case 200:
-					res.json(JSON.parse(body));
+					res.json(typeof body === "string" ? JSON.parse(body) : body);
 					break;
 				case 400:
 					res.status(400).json({

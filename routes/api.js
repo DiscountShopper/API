@@ -15,7 +15,7 @@ var EnhancedRouter = function(type){
 		else {
 			switch(response.statusCode){
 				case 200:
-					res.json(JSON.parse(body));
+					res.json(typeof body === "string" ? JSON.parse(body) : body);
 					break;
 				case 400:
 					res.status(400).json({
@@ -79,7 +79,14 @@ var EnhancedRouter = function(type){
 
 	this.router.post('/recommended/products/:postalCode', function(req, res){
 		var serviceUrl = constants.SERVICE_URL + '/api/recommended/products/' + req.params.postalCode +'?type=' + that.type;
-		request(serviceUrl, req.body, function(err, response, body){
+
+		var options = {
+			uri: serviceUrl,
+			method: 'POST',
+			json: req.body
+		};
+
+		request(options, function(err, response, body){
 			that.handleServiceResponse(res, err, response, body);
 		});
 	});
