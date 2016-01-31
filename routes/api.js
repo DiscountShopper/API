@@ -60,8 +60,8 @@ router.get('/products/:publicationId/:productId', function(req, res){
 	});
 });
 
-router.get('/publications/closest/:postalCode', function(req, res){
-	var serviceUrl = constants.SERVICE_URL + '/api/publications/closest/' + req.params.postalCode;
+router.get('/closest/publications/:postalCode', function(req, res){
+	var serviceUrl = constants.SERVICE_URL + '/api/closest/publications/' + req.params.postalCode;
 	request(serviceUrl, function(err, response, body){
 		handleServiceResponse(res, err, response, body);
 	});
