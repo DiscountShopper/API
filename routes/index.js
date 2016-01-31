@@ -8,7 +8,14 @@ var router = express.Router();
 router.use('/api/groceries', new Api("GROCERIES").router);
 router.use('/api/drugstores', new Api("DRUGSTORES").router);
 router.post('/api/pdf', function(req, res){
-	request.post(constants.SERVICE_URL + '/api/pdf', req.body, function(err, httpResponse, body){
+	var serviceUrl = constants.SERVICE_URL + '/api/pdf';
+	var options = {
+		uri: serviceUrl,
+		method: 'POST',
+		json: req.body
+	};
+
+	request(options, function(err, httpResponse, body){
 		if(err){
 			res.status(500).json({
 				error: 'Internal server error from api, service is probably down.',
